@@ -1,0 +1,30 @@
+{
+  "name": "no-word-memory",
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "pnpm@10.6.5",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.13.1",
+    "@unocss/eslint-plugin": "^66.1.2",
+    "eslint": "^9.26.0",
+    "eslint-plugin-format": "^1.0.1",
+    "lint-staged": "^16.0.0",
+    "simple-git-hooks": "^2.13.0",
+    "typescript": "^5.8.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
