@@ -2,13 +2,17 @@
   "name": "no-word-memory",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@10.6.5",
+  "packageManager": "pnpm@10.11.0",
   "description": "",
   "author": "",
   "license": "ISC",
   "keywords": [],
   "main": "index.js",
   "scripts": {
+    "dev:client": "pnpm --filter @no-word-memory/client nuxt dev",
+    "build": "pnpm --filter @no-word-memory/client nuxt build",
+    "generate": "pnpm --filter @no-word-memory/client nuxt generate",
+    "preview": "pnpm --filter @no-word-memory/client nuxt preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

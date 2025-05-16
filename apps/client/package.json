@@ -1,0 +1,30 @@
+{
+  "name": "@no-word-memory/client",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.6.5",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "dependencies": {
+    "@nuxt/fonts": "^0.11.4",
+    "@nuxt/icon": "1.13.0",
+    "@nuxt/ui": "^3.1.2",
+    "@nuxtjs/color-mode": "3.5.2",
+    "nuxt": "^3.17.3",
+    "valibot": "^1.1.0",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.338",
+    "tailwindcss": "^4.1.7"
+  }
+}

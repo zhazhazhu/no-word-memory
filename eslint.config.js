@@ -2,7 +2,7 @@ import antfu from '@antfu/eslint-config';
 
 export default antfu({
   vue: true,
-  jsonc: false,
+  jsonc: true,
   yaml: true,
   unocss: true,
   typescript: true,
