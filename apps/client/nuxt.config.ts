@@ -13,7 +13,10 @@ export default defineNuxtConfig({
       ],
     },
   },
+  ui: {
+    fonts: false,
+  },
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@nuxt/fonts', '@nuxtjs/color-mode', '@nuxt/icon'],
+  modules: ['@nuxt/ui', '@nuxtjs/color-mode'],
   css: ['~/assets/css/main.css'],
 });

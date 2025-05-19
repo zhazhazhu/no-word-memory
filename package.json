@@ -9,10 +9,10 @@
   "keywords": [],
   "main": "index.js",
   "scripts": {
-    "dev:client": "pnpm --filter @no-word-memory/client nuxt dev",
-    "build": "pnpm --filter @no-word-memory/client nuxt build",
-    "generate": "pnpm --filter @no-word-memory/client nuxt generate",
-    "preview": "pnpm --filter @no-word-memory/client nuxt preview",
+    "dev:client": "pnpm --filter @no-word-memory/client dev",
+    "build": "pnpm --filter @no-word-memory/client build",
+    "generate": "pnpm --filter @no-word-memory/client generate",
+    "preview": "pnpm --filter @no-word-memory/client preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

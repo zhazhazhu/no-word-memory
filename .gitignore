@@ -24,3 +24,4 @@ dist-ssr
 # Nuxt.js build / generate output
 .nuxt
 dist
+.output
