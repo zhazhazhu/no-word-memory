@@ -25,3 +25,8 @@ dist-ssr
 .nuxt
 dist
 .output
+
+# environment
+.env
+.env.local
+.env.development

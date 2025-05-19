@@ -16,6 +16,9 @@
   "dependencies": {
     "@nuxt/ui": "^3.1.2",
     "@nuxtjs/color-mode": "3.5.2",
+    "@sidebase/nuxt-auth": "^0.10.1",
+    "@types/node": "^22.15.19",
+    "next-auth": "^4.21.1",
     "nuxt": "^3.17.3",
     "valibot": "^1.1.0",
     "vue": "^3.5.13",

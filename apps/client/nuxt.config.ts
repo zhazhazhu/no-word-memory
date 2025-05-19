@@ -16,7 +16,18 @@ export default defineNuxtConfig({
   ui: {
     fonts: false,
   },
+  auth: {
+    provider: {
+      type: 'authjs',
+      trustHost: false,
+      defaultProvider: 'github',
+      addDefaultCallbackUrl: true,
+    },
+    globalAppMiddleware: {
+      isEnabled: true,
+    },
+  },
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@nuxtjs/color-mode'],
+  modules: ['@nuxt/ui', '@nuxtjs/color-mode', '@sidebase/nuxt-auth'],
   css: ['~/assets/css/main.css'],
 });
