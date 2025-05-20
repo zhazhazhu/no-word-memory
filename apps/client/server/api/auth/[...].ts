@@ -9,6 +9,11 @@ export default NuxtAuthHandler({
     GithubProvider.default({
       clientId: process.env.NUXT_GITHUB_CLIENT_ID,
       clientSecret: process.env.NUXT_GITHUB_CLIENT_SECRET,
+      authorization: {
+        params: {
+          scope: 'read:user user:email',
+        },
+      },
     }),
   ],
 });
