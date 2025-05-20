@@ -1,0 +1,11 @@
+{
+  "name": "@no-word-memory/schema",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.11.0",
+  "main": "src/index.ts",
+  "scripts": {},
+  "dependencies": {
+    "drizzle-orm": "^0.43.1"
+  }
+}

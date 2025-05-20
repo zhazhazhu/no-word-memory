@@ -2,11 +2,7 @@
   "name": "@no-word-memory/client",
   "version": "1.0.0",
   "packageManager": "pnpm@10.6.5",
-  "description": "",
-  "author": "",
-  "license": "ISC",
-  "keywords": [],
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
@@ -17,7 +13,6 @@
     "@nuxt/ui": "^3.1.2",
     "@nuxtjs/color-mode": "3.5.2",
     "@sidebase/nuxt-auth": "^0.10.1",
-    "@types/node": "^22.15.19",
     "next-auth": "^4.21.1",
     "nuxt": "^3.17.3",
     "valibot": "^1.1.0",
@@ -25,6 +20,7 @@
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
+    "@types/node": "^22.15.19",
     "tailwindcss": "^4.1.7"
   }
 }

@@ -1,0 +1,21 @@
+{
+  "name": "@no-word-memory/db",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.11.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "migrate": "drizzle-kit push",
+    "generate": "drizzle-kit generate"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.15.6",
+    "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.43.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.19",
+    "drizzle-kit": "^0.31.1",
+    "tsx": "^4.19.4"
+  }
+}
