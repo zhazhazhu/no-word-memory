@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "@trpc/client": "^11.1.2",
-    "@trpc/server": "^11.1.2"
+    "@trpc/server": "^11.1.2",
+    "drizzle-orm": "^0.43.1"
   },
   "devDependencies": {
     "@nameof/nameof": "^0.0.8",

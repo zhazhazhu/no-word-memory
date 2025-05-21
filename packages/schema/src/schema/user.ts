@@ -2,8 +2,9 @@ import { sql } from 'drizzle-orm';
 import { sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 export const users = sqliteTable('users_table', {
-  id: text().primaryKey().$defaultFn(() => sql`ROWID`),
+  id: text().primaryKey(),
   name: text().notNull(),
   email: text().notNull(),
+  avatar: text().notNull(),
   createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
 });

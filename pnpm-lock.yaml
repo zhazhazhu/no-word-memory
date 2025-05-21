@@ -47,6 +47,9 @@ importers:
       '@trpc/server':
         specifier: ^11.1.2
         version: 11.1.2(typescript@5.8.3)
+      drizzle-orm:
+        specifier: ^0.43.1
+        version: 0.43.1(@libsql/client@0.15.6)(sqlite3@5.1.7)
     devDependencies:
       '@nameof/nameof':
         specifier: ^0.0.8
