@@ -5,6 +5,7 @@
   "packageManager": "pnpm@10.11.0",
   "main": "src/index.ts",
   "scripts": {
+    "init": "drizzle-kit push",
     "studio": "drizzle-kit studio",
     "migrate": "drizzle-kit push",
     "generate": "drizzle-kit generate"
