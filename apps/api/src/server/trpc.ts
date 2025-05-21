@@ -11,4 +11,9 @@ const t = initTRPC.create();
  * that can be used throughout the router
  */
 export const router = t.router;
+
+/**
+ * Export reusable middleware
+ * that can be used throughout the router
+ */
 export const publicProcedure = t.procedure;

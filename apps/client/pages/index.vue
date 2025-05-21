@@ -2,7 +2,7 @@
 const { data } = useAuth();
 const { $trpc } = useNuxtApp();
 
-const users = await $trpc.userList.query();
+const users = await $trpc.user.list.query();
 </script>
 
 <template>
