@@ -2,7 +2,7 @@ import process from 'node:process';
 import { defineConfig } from 'drizzle-kit';
 
 export default defineConfig({
-  schema: '../schema/src/schema',
+  schema: '../schema/src/schema/*',
   out: './drizzle',
   dialect: 'sqlite',
   dbCredentials: {

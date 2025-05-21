@@ -11,9 +11,9 @@ importers:
       '@antfu/eslint-config':
         specifier: ^4.13.1
         version: 4.13.1(@typescript-eslint/utils@8.32.1(eslint@9.26.0(jiti@2.4.2))(typescript@5.8.3))(@unocss/eslint-plugin@66.1.2(eslint@9.26.0(jiti@2.4.2))(typescript@5.8.3))(@vue/compiler-sfc@3.5.14)(eslint-plugin-format@1.0.1(eslint@9.26.0(jiti@2.4.2)))(eslint@9.26.0(jiti@2.4.2))(typescript@5.8.3)
-      '@no-word-memory/db':
+      '@no-word-memory/database':
         specifier: workspace:*
-        version: link:packages/db
+        version: link:packages/database
       '@no-word-memory/schema':
         specifier: workspace:*
         version: link:packages/schema
@@ -70,7 +70,7 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7
 
-  packages/db:
+  packages/database:
     dependencies:
       '@libsql/client':
         specifier: ^0.15.6

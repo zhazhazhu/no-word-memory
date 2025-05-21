@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.13.1",
-    "@no-word-memory/db": "workspace:*",
+    "@no-word-memory/database": "workspace:*",
     "@no-word-memory/schema": "workspace:*",
     "@unocss/eslint-plugin": "^66.1.2",
     "eslint": "^9.26.0",

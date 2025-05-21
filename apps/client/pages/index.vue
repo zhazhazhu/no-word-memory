@@ -1,10 +1,9 @@
 <script lang='ts' setup>
 const { data } = useAuth();
-const { data: users } = await useFetch('/api/users');
 </script>
 
 <template>
-  Hello world{{ data }}{{ users }}
+  Hello world{{ data }}
 </template>
 
 <style lang='css' scoped></style>

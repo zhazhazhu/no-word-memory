@@ -7,4 +7,4 @@ import 'dotenv/config';
 const client = createClient({ url: process.env.DB_FILE_NAME ?? '' });
 const db = drizzle(client, { schema: schemas });
 
-export { db };
+export { db, schemas };

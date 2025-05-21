@@ -1,10 +1,11 @@
 {
-  "name": "@no-word-memory/db",
+  "name": "@no-word-memory/database",
   "type": "module",
   "version": "1.0.0",
   "packageManager": "pnpm@10.11.0",
   "main": "src/index.ts",
   "scripts": {
+    "studio": "drizzle-kit studio",
     "migrate": "drizzle-kit push",
     "generate": "drizzle-kit generate"
   },
