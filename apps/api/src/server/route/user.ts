@@ -14,9 +14,23 @@ const exist = publicProcedure.input(z.string()).query(async ({ input }) => {
   return Boolean(user)
 });
 
+const register = publicProcedure.input(z.object({
+  name: z.string(),
+  email: z.string(),
+  avatar: z.string()
+})).mutation(async ({ input }) => {
+  const user = await db.insert(schemas.users).values({
+    name: input.name,
+    email: input.email,
+    avatar: input.avatar
+  }).returning({insertedId:schemas.users.id})
+  return user[0].insertedId
+})
+
 const user = router({
   list,
-  exist
+  exist,
+  register
 });
 
 export { user };
