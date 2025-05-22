@@ -39,7 +39,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
     <div class="size-[600px] bg-white rounded-3xl p-18 shadow flex items-center justify-center flex-col">
       <div class="text-2xl my-6">
-        Create your account
+        Sign in to your account
       </div>
 
       <UForm :schema="schema" :state="state" class="space-y-4 w-full" @submit="onSubmit">
@@ -48,7 +48,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         </UFormField>
 
         <UButton type="submit" size="xl" class="w-full justify-center">
-          Create account
+          Continue
         </UButton>
       </UForm>
 
