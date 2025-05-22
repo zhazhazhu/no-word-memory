@@ -2,6 +2,7 @@ import process from 'node:process';
 import { NuxtAuthHandler } from '#auth';
 import { trpc } from '@no-word-memory/api';
 import GithubProvider from 'next-auth/providers/github';
+import GoogleProvider from 'next-auth/providers/google';
 
 export default NuxtAuthHandler({
   secret: process.env.NUXT_AUTH_SECRET,
@@ -14,6 +15,14 @@ export default NuxtAuthHandler({
         params: {
           scope: 'read:user user:email',
         },
+      },
+    }),
+    // @ts-expect-error Use .default here for it to work during SSR.
+    GoogleProvider.default({
+      clientId: process.env.NUXT_GOOGLE_CLIENT_ID,
+      clientSecret: process.env.NUXT_GOOGLE_CLIENT_SECRET,
+      httpOptions: {
+        timeout: 10000,
       },
     }),
   ],

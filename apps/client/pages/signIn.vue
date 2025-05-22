@@ -54,8 +54,11 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
       <USeparator label="or" class="my-[20px]" />
 
-      <UButton color="neutral" size="xl" class="w-full justify-center" plain icon="i-mdi-github" @click="signIn('github', { callbackUrl: '/' })">
+      <UButton color="neutral" variant="outline" size="xl" class="w-full justify-center" plain icon="i-mdi-github" @click="signIn('github', { callbackUrl: '/' })">
         Continue with Github
+      </UButton>
+      <UButton color="neutral" variant="outline" size="xl" class="w-full justify-center mt-[20px]" plain icon="i-devicon-google" @click="signIn('google', { callbackUrl: '/' })">
+        Continue with Google
       </UButton>
     </div>
   </div>
