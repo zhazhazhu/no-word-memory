@@ -1,5 +1,6 @@
 import process from 'node:process';
 import { NuxtAuthHandler } from '#auth';
+import { trpc } from '@no-word-memory/api';
 import GithubProvider from 'next-auth/providers/github';
 
 export default NuxtAuthHandler({
@@ -17,11 +18,18 @@ export default NuxtAuthHandler({
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
+    async signIn({ user }) {
+      const exist = await trpc.user.exist.query(user.id);
+      if (exist === false) {
+        const id = await trpc.user.register.mutate({
+          id: user.id,
+          name: user.name!,
+          email: user.email!,
+          avatar: user.image!,
+        });
+        return Boolean(id);
       }
-      return token;
+      return true;
     },
   },
 });

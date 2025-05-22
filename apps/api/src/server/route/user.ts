@@ -11,26 +11,28 @@ const list = publicProcedure.query(async () => {
 
 const exist = publicProcedure.input(z.string()).query(async ({ input }) => {
   const user = await db.query.users.findFirst({	where: (posts, { eq }) => (eq(posts.id, input)) });
-  return Boolean(user)
+  return Boolean(user);
 });
 
 const register = publicProcedure.input(z.object({
+  id: z.optional(z.string()),
   name: z.string(),
   email: z.string(),
-  avatar: z.string()
+  avatar: z.string(),
 })).mutation(async ({ input }) => {
   const user = await db.insert(schemas.users).values({
+    id: input.id,
     name: input.name,
     email: input.email,
-    avatar: input.avatar
-  }).returning({insertedId:schemas.users.id})
-  return user[0].insertedId
-})
+    avatar: input.avatar,
+  }).returning({ insertedId: schemas.users.id });
+  return user[0].insertedId;
+});
 
 const user = router({
   list,
   exist,
-  register
+  register,
 });
 
 export { user };

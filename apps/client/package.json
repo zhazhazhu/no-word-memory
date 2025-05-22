@@ -20,6 +20,9 @@
   },
   "devDependencies": {
     "@types/node": "^22.15.19",
-    "tailwindcss": "^4.1.7"
+    "@unocss/nuxt": "^66.1.2",
+    "@unocss/preset-wind4": "^66.1.2",
+    "tailwindcss": "^4.1.7",
+    "unocss": "^66.1.2"
   }
 }
