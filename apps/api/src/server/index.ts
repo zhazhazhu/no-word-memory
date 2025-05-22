@@ -1,4 +1,5 @@
 import { createHTTPServer } from '@trpc/server/adapters/standalone';
+import cors from 'cors';
 import * as routes from './route';
 import { router } from './trpc';
 
@@ -12,6 +13,7 @@ export type AppRouter = typeof appRouter;
 
 const server = createHTTPServer({
   router: appRouter,
+  middleware: cors(),
 });
 
 server.listen(8008, () => {

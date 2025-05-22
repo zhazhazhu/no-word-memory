@@ -22,19 +22,14 @@ const state = reactive<Partial<Schema>>({
 
 const toast = useToast();
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  debugger;
   toast.add({ title: 'Success', description: 'The form has been submitted.', color: 'success' });
   console.log(event.data);
-}
-function handleSubmit() {
-  debugger;
-  console.log('submit');
 }
 </script>
 
 <template>
   <div>
-    <UForm :schema="schema" :state="state" class="space-y-4">
+    <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
       <UFormField label="Name" name="name">
         <UInput v-model="state.name" />
       </UFormField>
@@ -45,7 +40,7 @@ function handleSubmit() {
         <UInput v-model="state.avatar" />
       </UFormField>
 
-      <UButton @click="handleSubmit">
+      <UButton type="submit">
         Submit
       </UButton>
     </UForm>

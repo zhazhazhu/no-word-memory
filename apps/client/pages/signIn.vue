@@ -4,16 +4,12 @@ definePageMeta({
 });
 
 const { signIn } = useAuth();
-
-function handleSignin() {
-  signIn('github',{callbackUrl:'/'});
-}
 </script>
 
 <template>
   <div>
     <p>Sign-In Options:</p>
-    <UButton @click="handleSignin">
+    <UButton @click="signIn('github', { callbackUrl: '/' })">
       Github
     </UButton>
   </div>
