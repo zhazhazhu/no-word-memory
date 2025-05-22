@@ -19,6 +19,7 @@
     "zod": "^3.25.13"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.15.19",
     "@unocss/nuxt": "^66.1.2",
     "@unocss/preset-wind4": "^66.1.2",

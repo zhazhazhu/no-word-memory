@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
-  modules: ['@nuxt/ui', '@nuxtjs/color-mode', '@sidebase/nuxt-auth', '@unocss/nuxt'],
+  modules: ['@nuxt/ui', '@nuxtjs/color-mode', '@sidebase/nuxt-auth'],
   css: ['~/assets/css/main.css'],
   app: {
     head: {

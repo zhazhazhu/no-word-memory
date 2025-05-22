@@ -32,12 +32,12 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 </script>
 
 <template>
-  <div class="flex items-center justify-center h-screen relative">
+  <div class="flex items-center justify-center h-screen relative prose">
     <div class="absolute top-0 -z-10 h-full w-full bg-white">
       <div class="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]" />
     </div>
 
-    <div class="w-600px h-600px bg-white rounded-3xl p-18 shadow flex items-center justify-center flex-col">
+    <div class="size-[600px] bg-white rounded-3xl p-18 shadow flex items-center justify-center flex-col">
       <div class="text-2xl my-6">
         Create your account
       </div>
@@ -52,7 +52,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         </UButton>
       </UForm>
 
-      <USeparator label="or" class="my-20px" />
+      <USeparator label="or" class="my-[20px]" />
 
       <UButton color="neutral" size="xl" class="w-full justify-center" plain icon="i-mdi-github" @click="signIn('github', { callbackUrl: '/' })">
         Continue with Github
