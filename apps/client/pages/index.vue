@@ -3,7 +3,7 @@ const { data } = useAuth();
 const { $trpc } = useNuxtApp();
 
 const users = await $trpc.user.list.query();
-const exist = await $trpc.user.exist.query('1')
+const exist = await $trpc.user.existByEmail.query('1');
 </script>
 
 <template>
@@ -11,7 +11,7 @@ const exist = await $trpc.user.exist.query('1')
     Authenticated: {{ data }}
   </p>
   <p>
-    Users: {{ users }} 
+    Users: {{ users }}
   </p>
   <p>
     is user exist? {{ exist }}

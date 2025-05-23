@@ -9,22 +9,17 @@ definePageMeta({
 const { signIn } = useAuth();
 
 const schema = z.object({
-  name: z.string().min(2, 'Must be at least 2 characters'),
   email: z.string().email('Invalid email'),
-  avatar: z.string(),
 });
 
 type Schema = z.output<typeof schema>;
 
 const state = reactive<Partial<Schema>>({
-  name: undefined,
-  email: undefined,
-  avatar: undefined,
+  email: 'fangyuan.leslie@foxmail.com',
 });
 
 const toast = useToast();
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  debugger;
   await signIn('email', {
     email: event.data.email,
     callbackUrl: '/',
