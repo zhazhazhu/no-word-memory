@@ -6,7 +6,7 @@ import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import { Pool } from 'pg';
 
-const pool = new Pool({
+const adapter = PostgresAdapter(new Pool({
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
@@ -14,9 +14,7 @@ const pool = new Pool({
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
-});
-
-const adapter = PostgresAdapter(pool) as any;
+})) as any;
 
 export default NuxtAuthHandler({
   secret: process.env.NUXT_AUTH_SECRET,

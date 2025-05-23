@@ -7,7 +7,6 @@ definePageMeta({
 });
 
 const { signIn } = useAuth();
-const { $trpc } = useNuxtApp();
 
 const schema = z.object({
   name: z.string().min(2, 'Must be at least 2 characters'),
@@ -25,6 +24,7 @@ const state = reactive<Partial<Schema>>({
 
 const toast = useToast();
 async function onSubmit(event: FormSubmitEvent<Schema>) {
+  debugger;
   await signIn('email', {
     email: event.data.email,
     callbackUrl: '/',
