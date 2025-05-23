@@ -1,10 +1,9 @@
-import { sql } from 'drizzle-orm';
-import { pgTable, text, timestamp } from 'drizzle-orm/pg-core';
+import { pgTable, serial, text, timestamp, varchar } from 'drizzle-orm/pg-core';
 
-export const users = pgTable('users_table', {
-  id: text().primaryKey().default(sql`gen_random_uuid()`),
-  name: text().notNull(),
-  email: text().notNull(),
-  avatar: text().notNull(),
-  createdAt: timestamp().notNull().defaultNow(),
+export const users = pgTable('users', {
+  id: serial('id').primaryKey(),
+  name: varchar('name', { length: 255 }),
+  email: varchar('email', { length: 255 }),
+  emailVerified: timestamp('emailVerified', { mode: 'date' }),
+  image: text('image'),
 });

@@ -4,35 +4,19 @@ import { publicProcedure, router } from '../trpc';
 
 const list = publicProcedure.query(async () => {
   // Retrieve users from a datasource, this is an imaginary database
-  const users = await db.select().from(schemas.users).all();
+  const users = await db.select().from(schemas.users);
 
   return users;
 });
 
-const exist = publicProcedure.input(z.string()).query(async ({ input }) => {
-  const user = await db.query.users.findFirst({	where: (posts, { eq }) => (eq(posts.id, input)) });
+const existByEmail = publicProcedure.input(z.string()).query(async ({ input }) => {
+  const user = await db.query.users.findFirst({	where: (posts, { eq }) => (eq(posts.email, input)) });
   return Boolean(user);
-});
-
-const register = publicProcedure.input(z.object({
-  id: z.optional(z.string()),
-  name: z.string(),
-  email: z.string(),
-  avatar: z.string(),
-})).mutation(async ({ input }) => {
-  const user = await db.insert(schemas.users).values({
-    id: input.id,
-    name: input.name,
-    email: input.email,
-    avatar: input.avatar,
-  }).returning({ insertedId: schemas.users.id });
-  return user[0].insertedId;
 });
 
 const user = router({
   list,
-  exist,
-  register,
+  existByEmail,
 });
 
 export { user };

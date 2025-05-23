@@ -25,9 +25,11 @@ const state = reactive<Partial<Schema>>({
 
 const toast = useToast();
 async function onSubmit(event: FormSubmitEvent<Schema>) {
+  await signIn('email', {
+    email: event.data.email,
+    callbackUrl: '/',
+  });
   toast.add({ title: 'Success', description: 'The form has been submitted.', color: 'success' });
-  const id = await $trpc.user.register.mutate(event.data);
-  console.log(id);
 }
 </script>
 

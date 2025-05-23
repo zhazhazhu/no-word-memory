@@ -10,17 +10,20 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
+    "@auth/pg-adapter": "^1.9.1",
     "@nuxt/ui": "^3.1.2",
     "@nuxtjs/color-mode": "3.5.2",
     "@sidebase/nuxt-auth": "^0.10.1",
     "next-auth": "^4.21.1",
     "nuxt": "^3.17.3",
+    "pg": "^8.16.0",
     "vue": "^3.5.13",
     "zod": "^3.25.13"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.15.19",
+    "@types/pg": "^8.15.2",
     "@unocss/nuxt": "^66.1.2",
     "@unocss/preset-wind4": "^66.1.2",
     "tailwindcss": "^4.1.7",
