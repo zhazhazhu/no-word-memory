@@ -1,11 +1,10 @@
 import { sql } from 'drizzle-orm';
-import { sqliteTable, text } from 'drizzle-orm/sqlite-core';
-import { createUUID } from '../helper';
+import { pgTable, text, timestamp } from 'drizzle-orm/pg-core';
 
-export const users = sqliteTable('users_table', {
-  id: text().primaryKey().$defaultFn(() => createUUID()),
+export const users = pgTable('users_table', {
+  id: text().primaryKey().default(sql`gen_random_uuid()`),
   name: text().notNull(),
   email: text().notNull(),
   avatar: text().notNull(),
-  createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
+  createdAt: timestamp().notNull().defaultNow(),
 });

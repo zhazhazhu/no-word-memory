@@ -11,9 +11,9 @@
     "generate": "drizzle-kit generate"
   },
   "dependencies": {
-    "@libsql/client": "^0.15.6",
     "dotenv": "^16.5.0",
-    "drizzle-orm": "^0.43.1"
+    "drizzle-orm": "^0.43.1",
+    "postgres": "^3.4.7"
   },
   "devDependencies": {
     "@types/node": "^22.15.19",

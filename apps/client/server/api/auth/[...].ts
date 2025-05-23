@@ -1,6 +1,7 @@
 import process from 'node:process';
 import { NuxtAuthHandler } from '#auth';
 import { trpc } from '@no-word-memory/api';
+// import EmailProvider from 'next-auth/providers/email';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 
@@ -25,6 +26,17 @@ export default NuxtAuthHandler({
         timeout: 10000,
       },
     }),
+    // EmailProvider.default({
+    //   server: {
+    //     host: process.env.NUXT_EMAIL_SERVER_HOST,
+    //     port: process.env.NUXT_EMAIL_SERVER_PORT,
+    //     auth: {
+    //       user: process.env.NUXT_EMAIL_SERVER_USER,
+    //       pass: process.env.NUXT_EMAIL_SERVER_PASSWORD,
+    //     },
+    //     from: process.env.NUXT_EMAIL_SERVER_FROM,
+    //   },
+    // }),
   ],
   callbacks: {
     async signIn({ user }) {

@@ -5,13 +5,13 @@ import { defineConfig } from 'drizzle-kit';
 
 dotenv.config({ path: path.resolve(__dirname, '../../apps/api/.env') });
 
-console.log('process.env.DB_FILE_NAME: ', process.env.DB_FILE_NAME);
+console.log('process.env.DATABASE_URL: ', process.env.DATABASE_URL);
 
 export default defineConfig({
   schema: '../schema/src/schema/*',
   out: './drizzle',
-  dialect: 'sqlite',
+  dialect: 'postgresql',
   dbCredentials: {
-    url: process.env.DB_FILE_NAME ?? '',
+    url: process.env.DATABASE_URL ?? '',
   },
 });
