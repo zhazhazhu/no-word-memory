@@ -13,7 +13,7 @@ const adapter = PostgresAdapter(new Pool({
   database: process.env.DATABASE_NAME,
   max: 20,
   idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
+  connectionTimeoutMillis: 20000,
 })) as any;
 
 export default NuxtAuthHandler({
