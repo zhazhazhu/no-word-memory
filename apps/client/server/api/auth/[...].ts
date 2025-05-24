@@ -18,6 +18,7 @@ const adapter = PostgresAdapter(new Pool({
 
 export default NuxtAuthHandler({
   secret: process.env.NUXT_AUTH_SECRET,
+  adapter,
   providers: [
     // @ts-expect-error Use .default here for it to work during SSR.
     GithubProvider.default({
@@ -46,23 +47,16 @@ export default NuxtAuthHandler({
           user: process.env.NUXT_EMAIL_SERVER_USER,
           pass: process.env.NUXT_EMAIL_SERVER_PASSWORD,
         },
-        from: process.env.NUXT_EMAIL_SERVER_FROM,
       },
+      from: process.env.NUXT_EMAIL_SERVER_USER,
+      maxAge: 30 * 60,
     }),
   ],
-  adapter,
+  pages: {
+    verifyRequest: '/auth/verify-request',
+  },
   callbacks: {
     // async signIn({ user, account, profile }) {
-    //   const exist = await trpc.user.existByEmail.query(user.email!);
-    //   if (exist === false) {
-    //     const id = await trpc.user.register.mutate({
-    //       id: user.id,
-    //       name: user.name!,
-    //       email: user.email!,
-    //       avatar: user.image!,
-    //     });
-    //     return Boolean(id);
-    //   }
     //   return true;
     // },
   },

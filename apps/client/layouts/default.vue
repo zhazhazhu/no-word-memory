@@ -3,11 +3,7 @@
 </script>
 
 <template>
-  <UApp>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-  </UApp>
+  <slot />
 </template>
 
 <style lang='css' scoped></style>
