@@ -18,5 +18,8 @@ export default defineNuxtConfig({
   ui: {
     fonts: false,
   },
+  devServer: {
+    port: 3300,
+  },
   devtools: { enabled: true },
 });

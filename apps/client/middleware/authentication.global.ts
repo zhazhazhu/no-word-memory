@@ -1,7 +1,13 @@
 export default defineNuxtRouteMiddleware((to) => {
-  const { status } = useAuth();
+  const { status, data: session } = useAuth();
   // Return immediately if user is already authenticated
-  if (status.value === 'authenticated' || to.meta.auth?.unauthenticatedOnly === true) {
+  if (to.meta.auth?.unauthenticatedOnly === true) {
+    return;
+  }
+  if (status.value === 'authenticated') {
+    if (!session.value?.user?.name && to.path !== '/profile/setup') {
+      return navigateTo('/profile/setup');
+    }
     return;
   }
 

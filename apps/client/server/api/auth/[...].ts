@@ -56,8 +56,14 @@ export default NuxtAuthHandler({
     verifyRequest: '/auth/verify-request',
   },
   callbacks: {
-    // async signIn({ user, account, profile }) {
-    //   return true;
-    // },
+    async jwt({ token, account, profile }) {
+      return token;
+    },
+    async session({ session, token, user }) {
+      return {
+        ...session,
+        id: user.id,
+      };
+    },
   },
 });
