@@ -1,8 +1,4 @@
 <script lang='ts' setup>
-definePageMeta({
-  auth: { unauthenticatedOnly: true },
-});
-
 const { data } = useAuth();
 const { $trpc } = useNuxtApp();
 

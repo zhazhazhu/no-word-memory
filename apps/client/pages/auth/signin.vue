@@ -16,7 +16,7 @@ const schema = z.object({
 type Schema = z.output<typeof schema>;
 
 const state = reactive<Partial<Schema>>({
-  email: 'fangyuan.leslie@gmail.com',
+  email: '',
 });
 const loadingEmail = ref(false);
 const loadingGithub = ref(false);

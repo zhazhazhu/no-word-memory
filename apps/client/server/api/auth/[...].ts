@@ -47,6 +47,7 @@ export default NuxtAuthHandler({
   ],
   pages: {
     verifyRequest: '/auth/verify-request',
+    signIn: '/auth/signin',
   },
   callbacks: {
     async jwt({ token, account, profile }) {

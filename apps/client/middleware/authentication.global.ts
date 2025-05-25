@@ -16,5 +16,5 @@ export default defineNuxtRouteMiddleware((to) => {
    *
    * So to avoid calling it, we return it immediately.
    */
-  return navigateTo('/signin');
+  return navigateTo('/auth/signin');
 });
