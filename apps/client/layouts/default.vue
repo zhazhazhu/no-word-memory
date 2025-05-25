@@ -66,7 +66,7 @@ const menuItems = ref<NavigationMenuItem[][]>([
         <UNavigationMenu orientation="horizontal" :items="menuItems" class="flex-1 ml-4" />
       </div>
     </UContainer>
-    <UContainer class="h-[calc(100vh-65px)]">
+    <UContainer class="h-[calc(100vh-65px)] py-[20px]">
       <slot />
     </UContainer>
   </div>
