@@ -11,9 +11,6 @@ importers:
       '@antfu/eslint-config':
         specifier: ^4.13.1
         version: 4.13.1(@typescript-eslint/utils@8.32.1(eslint@9.26.0(jiti@2.4.2))(typescript@5.8.3))(@unocss/eslint-plugin@66.1.2(eslint@9.26.0(jiti@2.4.2))(typescript@5.8.3))(@vue/compiler-sfc@3.5.14)(eslint-plugin-format@1.0.1(eslint@9.26.0(jiti@2.4.2)))(eslint@9.26.0(jiti@2.4.2))(typescript@5.8.3)
-      '@no-word-memory/api':
-        specifier: workspace:*
-        version: link:apps/api
       '@no-word-memory/database':
         specifier: workspace:*
         version: link:packages/database
@@ -32,46 +29,18 @@ importers:
       lint-staged:
         specifier: ^16.0.0
         version: 16.0.0
-      simple-git-hooks:
-        specifier: ^2.13.0
-        version: 2.13.0
-      typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
-
-  apps/api:
-    dependencies:
-      '@trpc/client':
-        specifier: ^11.1.2
-        version: 11.1.2(@trpc/server@11.1.2(typescript@5.8.3))(typescript@5.8.3)
-      '@trpc/server':
-        specifier: ^11.1.2
-        version: 11.1.2(typescript@5.8.3)
-      cors:
-        specifier: ^2.8.5
-        version: 2.8.5
-      drizzle-orm:
-        specifier: ^0.43.1
-        version: 0.43.1(@libsql/client@0.15.6)(@types/pg@8.15.2)(pg@8.16.0)(postgres@3.4.7)(sqlite3@5.1.7)
-    devDependencies:
-      '@nameof/nameof':
-        specifier: ^0.0.8
-        version: 0.0.8
-      '@types/cors':
-        specifier: ^2.8.18
-        version: 2.8.18
-      '@types/node':
-        specifier: ^22.15.19
-        version: 22.15.19
       pkgroll:
         specifier: ^2.12.2
         version: 2.12.2(typescript@5.8.3)
+      simple-git-hooks:
+        specifier: ^2.13.0
+        version: 2.13.0
       tsx:
         specifier: ^4.19.4
         version: 4.19.4
-      zod:
-        specifier: ^3.25.13
-        version: 3.25.13
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
 
   apps/client:
     dependencies:
@@ -87,6 +56,15 @@ importers:
       '@sidebase/nuxt-auth':
         specifier: ^0.10.1
         version: 0.10.1(@libsql/client@0.15.6)(drizzle-orm@0.43.1(@libsql/client@0.15.6)(@types/pg@8.15.2)(pg@8.16.0)(postgres@3.4.7)(sqlite3@5.1.7))(encoding@0.1.13)(magicast@0.3.5)(next-auth@4.21.1(next@13.5.11(@babel/core@7.27.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nodemailer@7.0.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(sqlite3@5.1.7)
+      '@trpc/client':
+        specifier: ^11.1.2
+        version: 11.1.2(@trpc/server@11.1.2(typescript@5.8.3))(typescript@5.8.3)
+      '@trpc/server':
+        specifier: ^11.1.2
+        version: 11.1.2(typescript@5.8.3)
+      drizzle-orm:
+        specifier: ^0.43.1
+        version: 0.43.1(@libsql/client@0.15.6)(@types/pg@8.15.2)(pg@8.16.0)(postgres@3.4.7)(sqlite3@5.1.7)
       next-auth:
         specifier: ^4.21.1
         version: 4.21.1(next@13.5.11(@babel/core@7.27.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nodemailer@7.0.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -99,6 +77,9 @@ importers:
       pg:
         specifier: ^8.16.0
         version: 8.16.0
+      trpc-nuxt:
+        specifier: ^1.0.5
+        version: 1.0.5(@trpc/client@11.1.2(@trpc/server@11.1.2(typescript@5.8.3))(typescript@5.8.3))(@trpc/server@11.1.2(typescript@5.8.3))
       vue:
         specifier: ^3.5.13
         version: 3.5.14(typescript@5.8.3)
@@ -130,12 +111,12 @@ importers:
 
   packages/database:
     dependencies:
-      dotenv:
-        specifier: ^16.5.0
-        version: 16.5.0
       drizzle-orm:
         specifier: ^0.43.1
         version: 0.43.1(@libsql/client@0.15.6)(@types/pg@8.15.2)(pg@8.16.0)(postgres@3.4.7)(sqlite3@5.1.7)
+      pg:
+        specifier: ^8.16.0
+        version: 8.16.0
       postgres:
         specifier: ^3.4.7
         version: 3.4.7
@@ -143,6 +124,9 @@ importers:
       '@types/node':
         specifier: ^22.15.19
         version: 22.15.19
+      '@types/pg':
+        specifier: ^8.15.2
+        version: 8.15.2
       drizzle-kit:
         specifier: ^0.31.1
         version: 0.31.1
@@ -935,9 +919,6 @@ packages:
     resolution: {integrity: sha512-rmOWVRUbUJD7iSvJugjUbFZshTAuJ48MXoZ80Osx1GM0K/H1w7rSEvmw8m6vdWxNASgtaHIhAgre4H/E9GJiYQ==}
     engines: {node: '>=18'}
 
-  '@nameof/nameof@0.0.8':
-    resolution: {integrity: sha512-n6AYfZKj5V0+OUf3yZwxrAXRwvNp+5VbE68tSVswo9NgBCNB0RiCNz0+6PYh7DpXTx9TdgjZOlo34JRLTJk+dA==}
-
   '@napi-rs/wasm-runtime@0.2.9':
     resolution: {integrity: sha512-OKRBiajrrxB9ATokgEQoG87Z25c67pCpYcCwmXYX8PBftC9pBfN18gnm/fh1wurSLEKIAt+QRFLFCQISrb66Jg==}
 
@@ -1683,9 +1664,6 @@ packages:
 
   '@tybys/wasm-util@0.9.0':
     resolution: {integrity: sha512-6+7nlbMVX/PVDCwaIQ8nTOPveOcFLSt8GcXdx8hD0bt39uWxYT88uXzqTd4fTvqta7oeUJqudepapKNt2DYJFw==}
-
-  '@types/cors@2.8.18':
-    resolution: {integrity: sha512-nX3d0sxJW41CqQvfOzVG1NCTXfFDrDWIghCZncpHeWlVFd81zxB/DLhg7avFg6eHLCRX7ckBmoIIcqa++upvJA==}
 
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
@@ -6161,6 +6139,12 @@ packages:
     resolution: {integrity: sha512-aZbgViZrg1QNcG+LULa7nhZpJTZSLm/mXnHXnbAbjmN5aSa0y7V+wvv6+4WaBtpISJzThKy+PIPxc1Nq1EJ9mg==}
     engines: {node: '>= 14.0.0'}
 
+  trpc-nuxt@1.0.5:
+    resolution: {integrity: sha512-leQSJvyl0B+M47UH37Dvh+XoQKTtUnKW3d/g1S/SLh8ro3fNMGa2Cs1LNRwUbmMYin6Y3zFt1tKB9Wu0MSYKDA==}
+    peerDependencies:
+      '@trpc/client': ^11.0.0
+      '@trpc/server': ^11.0.0
+
   ts-api-utils@2.1.0:
     resolution: {integrity: sha512-CUgTZL1irw8u29bzrOD/nH85jqyc74D6SshFgujOIA7osm2Rz7dYH77agkx7H4FBNxDq7Cjf+IjaX/8zwFW+ZQ==}
     engines: {node: '>=18.12'}
@@ -7560,8 +7544,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@nameof/nameof@0.0.8': {}
-
   '@napi-rs/wasm-runtime@0.2.9':
     dependencies:
       '@emnapi/core': 1.4.3
@@ -8535,10 +8517,6 @@ snapshots:
     dependencies:
       tslib: 2.8.1
     optional: true
-
-  '@types/cors@2.8.18':
-    dependencies:
-      '@types/node': 22.15.19
 
   '@types/debug@4.1.12':
     dependencies:
@@ -13780,6 +13758,14 @@ snapshots:
   tr46@0.0.3: {}
 
   triple-beam@1.4.1: {}
+
+  trpc-nuxt@1.0.5(@trpc/client@11.1.2(@trpc/server@11.1.2(typescript@5.8.3))(typescript@5.8.3))(@trpc/server@11.1.2(typescript@5.8.3)):
+    dependencies:
+      '@trpc/client': 11.1.2(@trpc/server@11.1.2(typescript@5.8.3))(typescript@5.8.3)
+      '@trpc/server': 11.1.2(typescript@5.8.3)
+      h3: 1.15.3
+      ofetch: 1.4.1
+      ohash: 2.0.11
 
   ts-api-utils@2.1.0(typescript@5.8.3):
     dependencies:

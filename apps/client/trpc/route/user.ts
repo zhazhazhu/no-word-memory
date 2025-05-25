@@ -1,9 +1,9 @@
 import { db, schemas } from '@no-word-memory/database';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
-import { publicProcedure, router } from '../trpc';
+import { protectedProcedure, publicProcedure, router } from '../trpc';
 
-const list = publicProcedure.query(async () => {
+const list = protectedProcedure.query(async () => {
   // Retrieve users from a datasource, this is an imaginary database
   const users = await db.query.users.findMany();
 

@@ -18,14 +18,15 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.13.1",
-    "@no-word-memory/api": "workspace:*",
     "@no-word-memory/database": "workspace:*",
     "@no-word-memory/schema": "workspace:*",
     "@unocss/eslint-plugin": "^66.1.2",
     "eslint": "^9.26.0",
     "eslint-plugin-format": "^1.0.1",
     "lint-staged": "^16.0.0",
+    "pkgroll": "^2.12.2",
     "simple-git-hooks": "^2.13.0",
+    "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   },
   "simple-git-hooks": {

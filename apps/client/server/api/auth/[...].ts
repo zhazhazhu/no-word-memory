@@ -40,15 +40,8 @@ export default NuxtAuthHandler({
     }),
     // @ts-expect-error Use .default here for it to work during SSR.
     EmailProvider.default({
-      server: {
-        host: process.env.NUXT_EMAIL_SERVER_HOST,
-        port: process.env.NUXT_EMAIL_SERVER_PORT,
-        auth: {
-          user: process.env.NUXT_EMAIL_SERVER_USER,
-          pass: process.env.NUXT_EMAIL_SERVER_PASSWORD,
-        },
-      },
-      from: process.env.NUXT_EMAIL_SERVER_USER,
+      server: process.env.NUXT_EMAIL_SERVER,
+      from: process.env.NUXT_EMAIL_SERVER_FORM,
       maxAge: 30 * 60,
     }),
   ],
