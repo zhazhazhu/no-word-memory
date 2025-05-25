@@ -1,7 +1,7 @@
 import { db, schemas } from '@no-word-memory/database';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
-import { protectedProcedure, publicProcedure, router } from '../trpc';
+import { protectedProcedure, router } from '../trpc';
 
 const list = protectedProcedure.query(async () => {
   // Retrieve users from a datasource, this is an imaginary database
@@ -10,12 +10,12 @@ const list = protectedProcedure.query(async () => {
   return users;
 });
 
-const existByEmail = publicProcedure.input(z.string()).query(async ({ input }) => {
+const existByEmail = protectedProcedure.input(z.string()).query(async ({ input }) => {
   const user = await db.query.users.findFirst({	where: (posts, { eq }) => (eq(posts.email, input)) });
   return Boolean(user);
 });
 
-const updateProfile = publicProcedure.input(z.object({
+const updateProfile = protectedProcedure.input(z.object({
   id: z.number(),
   name: z.string().nullable(),
   image: z.string().nullable(),
