@@ -1,10 +1,24 @@
 {
   "name": "@no-word-memory/api",
+  "type": "module",
   "version": "1.0.0",
   "packageManager": "pnpm@10.6.5",
-  "main": "src/index.ts",
+  "exports": {
+    "./server": {
+      "types": "./dist/server/index.d.ts",
+      "import": "./dist/server/index.mjs",
+      "require": "./dist/server/index.cjs"
+    },
+    "./client": {
+      "types": "./dist/client/index.d.ts",
+      "import": "./dist/client/index.mjs",
+      "require": "./dist/client/index.cjs"
+    }
+  },
+  "files": ["dist"],
   "scripts": {
-    "dev:server": "tsx watch src/server/index.ts"
+    "dev": "tsx watch src/server/index.ts",
+    "build": "pkgroll "
   },
   "dependencies": {
     "@trpc/client": "^11.1.2",
@@ -16,6 +30,7 @@
     "@nameof/nameof": "^0.0.8",
     "@types/cors": "^2.8.18",
     "@types/node": "^22.15.19",
+    "pkgroll": "^2.12.2",
     "tsx": "^4.19.4",
     "zod": "^3.25.13"
   }
