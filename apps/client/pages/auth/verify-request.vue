@@ -3,8 +3,6 @@ definePageMeta({
   auth: { unauthenticatedOnly: true },
   layout: 'auth',
 });
-
-const { getProviders } = useAuth();
 </script>
 
 <template>

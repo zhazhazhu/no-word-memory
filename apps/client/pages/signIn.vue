@@ -18,12 +18,31 @@ type Schema = z.output<typeof schema>;
 const state = reactive<Partial<Schema>>({
   email: '',
 });
+const loadingEmail = ref(false);
+const loadingGithub = ref(false);
+const loadingGoogle = ref(false);
 
-async function onSubmit(event: FormSubmitEvent<Schema>) {
-  signIn('email', {
+function launch(loading: Ref<boolean>, callback: () => Promise<any>) {
+  loading.value = true;
+  callback().finally(() => {
+    loading.value = false;
+  });
+}
+function signinToEmail(event: FormSubmitEvent<Schema>) {
+  launch(loadingEmail, () => signIn('email', {
     email: event.data.email,
     callbackUrl: '/',
-  });
+  }));
+}
+function signinToGithub() {
+  launch(loadingGithub, () => signIn('github', {
+    callbackUrl: '/',
+  }));
+}
+function signinToGoogle() {
+  launch(loadingGoogle, () => signIn('google', {
+    callbackUrl: '/',
+  }));
 }
 </script>
 
@@ -33,22 +52,22 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       Sign in to your account
     </div>
 
-    <UForm :schema="schema" :state="state" class="space-y-4 w-full" @submit="onSubmit">
+    <UForm :schema="schema" :state="state" class="space-y-4 w-full" @submit="signinToEmail">
       <UFormField name="email">
         <UInput v-model="state.email" placeholder="Please enter your email" size="xl" icon="i-lucide-at-sign" class="w-full" />
       </UFormField>
 
-      <UButton type="submit" size="xl" class="w-full justify-center">
+      <UButton type="submit" size="xl" class="w-full justify-center" :loading="loadingEmail">
         Continue
       </UButton>
     </UForm>
 
     <USeparator label="or" class="my-[20px]" />
 
-    <UButton color="neutral" variant="outline" size="xl" class="w-full justify-center" plain icon="i-mdi-github" @click="signIn('github', { callbackUrl: '/' })">
+    <UButton color="neutral" variant="outline" size="xl" class="w-full justify-center" plain icon="i-mdi-github" :loading="loadingGithub" @click="signinToGithub">
       Continue with Github
     </UButton>
-    <UButton color="neutral" variant="outline" size="xl" class="w-full justify-center mt-[20px]" plain icon="i-devicon-google" @click="signIn('google', { callbackUrl: '/' })">
+    <UButton color="neutral" variant="outline" size="xl" class="w-full justify-center mt-[20px]" plain icon="i-devicon-google" :loading="loadingGoogle" @click="signinToGoogle">
       Continue with Google
     </UButton>
   </div>
