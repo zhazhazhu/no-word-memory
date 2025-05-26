@@ -1,4 +1,5 @@
-import { uuid, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
+import type { InferInsertModel } from 'drizzle-orm';
+import { pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
 
 export const dictionaries = pgTable('dictionaries', {
   id: uuid().defaultRandom().primaryKey(),
@@ -6,6 +7,8 @@ export const dictionaries = pgTable('dictionaries', {
   description: text(),
   createdAt: timestamp().defaultNow(),
 });
+
+export type InsertDictionary = InferInsertModel<typeof dictionaries>;
 
 export const words = pgTable('words', {
   id: uuid().defaultRandom().primaryKey(),
@@ -17,6 +20,8 @@ export const words = pgTable('words', {
   createdAt: timestamp().defaultNow(),
 });
 
+export type InsertWord = InferInsertModel<typeof words>;
+
 export const definitions = pgTable('definitions', {
   id: uuid().defaultRandom().primaryKey(),
   wordId: uuid()
@@ -27,9 +32,13 @@ export const definitions = pgTable('definitions', {
   example: text(),
 });
 
+export type InsertDefinition = InferInsertModel<typeof definitions>;
+
 export const userDictionaries = pgTable('user_dictionaries', {
   id: uuid().defaultRandom().primaryKey(),
   userId: text().notNull(), // next-auth 的 user.id
   dictionaryId: uuid().references(() => dictionaries.id),
   selectedAt: timestamp().defaultNow(),
 });
+
+export type InsertUserDictionary = InferInsertModel<typeof userDictionaries>;

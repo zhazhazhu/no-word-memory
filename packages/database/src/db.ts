@@ -2,6 +2,7 @@ import process from 'node:process';
 import * as schemas from '@no-word-memory/schema';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
+import 'dotenv/config';
 
 console.log('connection string: ', process.env.DATABASE_URL);
 

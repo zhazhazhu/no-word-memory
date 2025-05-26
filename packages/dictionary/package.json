@@ -1,0 +1,16 @@
+{
+  "name": "@no-word-memory/dictionary",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.11.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "send": "tsx src/send.ts"
+  },
+  "dependencies": {
+    "csv-parse": "^5.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.19"
+  }
+}

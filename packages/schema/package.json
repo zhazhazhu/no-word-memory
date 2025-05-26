@@ -6,6 +6,7 @@
   "main": "src/index.ts",
   "scripts": {},
   "dependencies": {
-    "drizzle-orm": "^0.43.1"
+    "drizzle-orm": "^0.43.1",
+    "drizzle-zod": "^0.8.2"
   }
 }
