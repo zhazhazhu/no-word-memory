@@ -16,7 +16,7 @@ const existByEmail = protectedProcedure.input(z.string()).query(async ({ input }
 });
 
 const updateProfile = protectedProcedure.input(z.object({
-  id: z.number(),
+  id: z.string(),
   name: z.string().nullable(),
   image: z.string().nullable(),
 })).mutation(async ({ input }) => {
