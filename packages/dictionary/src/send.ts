@@ -12,7 +12,8 @@ export async function send() {
 
   const [{ id: newConcept1Id }] = await db.insert(schemas.dictionaries).values({
     name: '新概念英语1',
-    description: '新概念英语1',
+    coverIcon: 'i-fluent-color-book-open-24',
+    description: '收录新概念第一册学习词汇，适合英语入门学习者',
   }).returning();
 
   const newConceptWordPath = path.resolve(process.cwd(), './meta/new-concept-1.csv');

@@ -4,6 +4,8 @@ import { pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
 export const dictionaries = pgTable('dictionaries', {
   id: uuid().defaultRandom().primaryKey(),
   name: text().notNull(),
+  coverIcon: text(),
+  coverImage: text(),
   description: text(),
   createdAt: timestamp().defaultNow(),
 });
