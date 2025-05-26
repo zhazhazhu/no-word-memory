@@ -4,8 +4,12 @@ import { z } from 'zod';
 import { protectedProcedure, router } from '../trpc';
 
 const dictionaries = protectedProcedure.query(async () => {
-  const words = await db.query.dictionaries.findMany();
-  return words;
+  const dictionary = await db.query.dictionaries.findMany({
+    with: {
+      words: true,
+    },
+  });
+  return dictionary;
 });
 
 const dictionary = router({

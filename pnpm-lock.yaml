@@ -90,6 +90,9 @@ importers:
         specifier: ^3.25.13
         version: 3.25.13
     devDependencies:
+      '@iconify-json/fluent-color':
+        specifier: ^1.2.12
+        version: 1.2.12
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@4.1.7)
@@ -797,6 +800,9 @@ packages:
   '@humanwhocodes/retry@0.4.3':
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
+
+  '@iconify-json/fluent-color@1.2.12':
+    resolution: {integrity: sha512-JJnnL5ixlcJH9cVKnTPsEan8gqhLGIdIxCfMNnPWABAm47QBzZ7dQ8fP5ySuVa6vnz80q4TpCfQyJxGDfDmPaQ==}
 
   '@iconify/collections@1.0.548':
     resolution: {integrity: sha512-wrty7ECTo7uL7F8go2oPcpZsP/XDK4nc2zbKH4jdb1lT3PVWxWsrmgtHSbXFqDqBw3dUYO13xowGteuc9s/v9Q==}
@@ -7376,6 +7382,10 @@ snapshots:
   '@humanwhocodes/retry@0.3.1': {}
 
   '@humanwhocodes/retry@0.4.3': {}
+
+  '@iconify-json/fluent-color@1.2.12':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify/collections@1.0.548':
     dependencies:

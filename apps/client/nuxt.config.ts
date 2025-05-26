@@ -18,6 +18,11 @@ export default defineNuxtConfig({
   ui: {
     fonts: false,
   },
+  icon: {
+    serverBundle: {
+      collections: ['fluent-color'], // <!--- this
+    },
+  },
   devServer: {
     port: 3300,
   },
@@ -25,8 +30,8 @@ export default defineNuxtConfig({
     transpile: ['trpc-nuxt'],
   },
   colorMode: {
-    preference: 'dark',
-    fallback: 'dark',
+    preference: 'light',
+    fallback: 'light',
   },
   devtools: { enabled: true },
 });

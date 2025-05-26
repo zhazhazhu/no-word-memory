@@ -1,7 +1,7 @@
 <script lang='ts' setup>
-import type { NavigationMenuItem } from '@nuxt/ui';
+import type { DropdownMenuItem, NavigationMenuItem } from '@nuxt/ui';
 
-const { data: session } = useAuth();
+const { data: session, signOut } = useAuth();
 
 // const colorMode = useColorMode();
 
@@ -20,12 +20,12 @@ const menuItems = ref<NavigationMenuItem[][]>([
     {
       label: 'Learn Classroom',
       icon: 'i-lucide-plane-takeoff',
-      to: '/learn-classroom'
+      to: '/learn-classroom',
     },
     {
       label: 'My Content',
       icon: 'i-lucide-book-open',
-      to: '/my-content'
+      to: '/my-content',
     },
     {
       label: 'Panel',
@@ -52,23 +52,51 @@ const menuItems = ref<NavigationMenuItem[][]>([
     },
   ],
 ]);
+const dropdownItems = ref<DropdownMenuItem[][]>([
+  [
+    {
+      label: 'Sign out',
+      icon: 'i-lucide-log-out',
+      onClick: () => signOut(),
+    },
+  ],
+]);
 </script>
 
 <template>
   <div class="relative">
-    <img src="~/assets/images/pexels-yaroslav-shuraev-1834403.jpg" class="absolute top-0 left-0 w-full h-full object-cover z-[-1] opacity-30">
-    <UContainer>
-      <div class="flex items-center h-[65px]">
-        <UTooltip :text="session?.user?.name || ''">
-          <UAvatar :src="session?.user?.image || ''" :alt="session?.user?.name || ''" />
-        </UTooltip>
+    <!-- <img src="~/assets/images/pexels-yaroslav-shuraev-1834403.jpg" class="absolute top-0 left-0 w-full h-full object-cover z-[-1] opacity-30"> -->
+    <header class="bg-default/75 backdrop-blur border-b border-default h-(--ui-header-height) sticky top-0 z-50">
+      <UContainer class="h-full">
+        <div class="flex items-center justify-between h-full">
+          <div class="mr-[20px] text-xl font-bold cursor-pointer flex items-end" @click="navigateTo('/')">
+            <UIcon name="i-fluent-color-notebook-20" size="32" />
+            <span>NoWords</span>
+          </div>
 
-        <UNavigationMenu orientation="horizontal" :items="menuItems" class="flex-1 ml-4" />
-      </div>
-    </UContainer>
-    <UContainer class="h-[calc(100vh-65px)] py-[20px]">
-      <slot />
-    </UContainer>
+          <UNavigationMenu orientation="horizontal" :items="menuItems" class="flex-1" />
+
+          <div class="ml-[20px]">
+            <UDropdownMenu
+              :items="dropdownItems"
+              :ui="{
+                content: 'w-38',
+              }"
+            >
+              <UTooltip :text="session?.user?.name || ''">
+                <UButton :avatar="{ src: session?.user?.image || '' }" color="neutral" variant="ghost" size="xl" />
+              </UTooltip>
+            </UDropdownMenu>
+          </div>
+        </div>
+      </UContainer>
+    </header>
+
+    <main class="min-h-[calc(100vh-var(--ui-header-height))]">
+      <UContainer>
+        <slot />
+      </UContainer>
+    </main>
   </div>
 </template>
 
