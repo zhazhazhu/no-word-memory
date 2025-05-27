@@ -1,17 +1,21 @@
 <script lang='ts' setup>
 import type { NavigationMenuItem } from '@nuxt/ui';
 
+definePageMeta({
+  redirect: '/settings/dictionary',
+});
+
 const menuItems = ref<NavigationMenuItem[][]>([
   [
-    {
-      label: '学习设置',
-      icon: 'i-lucide-settings-2',
-      to: '/settings/schedule',
-    },
     {
       label: '词书设置',
       icon: 'i-lucide-book-open',
       to: '/settings/dictionary',
+    },
+    {
+      label: '学习设置',
+      icon: 'i-lucide-settings-2',
+      to: '/settings/schedule',
     },
     {
       label: '系统设置',

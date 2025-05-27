@@ -38,7 +38,7 @@ const menuItems = ref<NavigationMenuItem[][]>([
       label: 'GitHub',
       icon: 'i-simple-icons-github',
       badge: '3.8k',
-      to: 'https://github.com/zhazhazhu',
+      to: 'https://github.com/zhazhazhu/no-word-memory',
       target: '_blank',
     },
     {
@@ -54,6 +54,11 @@ const menuItems = ref<NavigationMenuItem[][]>([
 ]);
 const dropdownItems = ref<DropdownMenuItem[][]>([
   [
+    {
+      label: 'Settings',
+      icon: 'i-lucide-settings',
+      to: '/settings',
+    },
     {
       label: 'Sign out',
       icon: 'i-lucide-log-out',

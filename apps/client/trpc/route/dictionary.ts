@@ -1,13 +1,65 @@
 import { db, schemas } from '@no-word-memory/database';
-import { eq } from 'drizzle-orm';
 import { z } from 'zod';
 import { protectedProcedure, router } from '../trpc';
 
-const dictionaries = protectedProcedure.input(z.object({ typeId: z.string() }).optional()).query(async ({ input }) => {
-  const dictionary = await db.query.dictionaries.findMany({
-    where: (posts, { eq }) => (input ? eq(posts.id, input.typeId) : undefined),
+const dictionaries = protectedProcedure
+  .input(z.object({ categoryCode: z.string(), keyWord: z.string().optional() }).optional())
+  .query(async ({ input }) => {
+    const keyword = input?.keyWord?.trim();
+    // 如果传了 categoryId，就筛选出这个分类下的词典
+    if (input?.categoryCode) {
+      const relatedDictionaries = await db.query.dictionaryCategoryRelations.findMany({
+        where: (rel, { eq }) => eq(rel.categoryCode, input.categoryCode),
+        with: {
+          dictionary: {
+            with: {
+              words: true,
+            },
+          },
+        },
+      });
+
+      // 如果传了 keyWord，对 dictionary.name/description 过滤
+      const filtered = keyword
+        ? relatedDictionaries
+            .map(rel => rel.dictionary)
+            .filter(dict =>
+              dict?.name?.toLowerCase().includes(keyword.toLowerCase())
+              || dict?.description?.toLowerCase().includes(keyword.toLowerCase()),
+            )
+        : relatedDictionaries.map(rel => rel.dictionary);
+
+      return filtered;
+    }
+
+    // 没有传 categoryId，查全部
+    return await db.query.dictionaries.findMany({
+      where: keyword
+        ? (dict, { ilike, or }) =>
+            or(
+              ilike(dict.name, `%${keyword}%`),
+              ilike(dict.description, `%${keyword}%`),
+            )
+        : undefined,
+      with: {
+        words: true,
+        categories: {
+          with: { category: true },
+        },
+      },
+    });
+  });
+
+export type Dictionary = Awaited<ReturnType<typeof dictionaries>>;
+
+const categoriesOfDictionary = protectedProcedure.query(async () => {
+  const dictionary = await db.query.categories.findMany({
     with: {
-      words: true,
+      dictionaries: {
+        with: {
+          dictionary: true,
+        },
+      },
     },
   });
   return dictionary;
@@ -38,6 +90,7 @@ const dictionary = router({
   dictionaries,
   myDictionaries,
   addDictionary,
+  categoriesOfDictionary,
 });
 
 export { dictionary };

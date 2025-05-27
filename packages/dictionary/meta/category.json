@@ -1,0 +1,32 @@
+{
+  "categories": [
+    {
+      "code": "POPULATION",
+      "name": "Population"
+    },
+    {
+      "code": "PRIMARY_SCHOOL",
+      "name": "Primary School"
+    },
+    {
+      "code": "ELEMENTARY_SCHOOL",
+      "name": "Elementary School"
+    },
+    {
+      "code": "HIGH_SCHOOL",
+      "name": "High School"
+    },
+    {
+      "code": "UNIVERSITY",
+      "name": "University"
+    },
+    {
+      "code": "ABOARD",
+      "name": "Aboard"
+    },
+    {
+      "code": "OTHER",
+      "name": "Other"
+    }
+  ]
+}

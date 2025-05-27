@@ -1,5 +1,5 @@
-import type { InferInsertModel } from 'drizzle-orm';
-import { pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+import type { InferInsertModel, InferSelectModel } from 'drizzle-orm';
+import { pgTable, primaryKey, text, timestamp, uuid } from 'drizzle-orm/pg-core';
 
 export const dictionaries = pgTable('dictionaries', {
   id: uuid().defaultRandom().primaryKey(),
@@ -11,6 +11,22 @@ export const dictionaries = pgTable('dictionaries', {
 });
 
 export type InsertDictionary = InferInsertModel<typeof dictionaries>;
+export type Dictionary = InferSelectModel<typeof dictionaries>;
+
+export const categories = pgTable('dictionary_categories', {
+  id: uuid().defaultRandom().primaryKey(),
+  code: text().unique().notNull(),
+  icon: text(),
+  name: text().notNull(),
+});
+
+export const dictionaryCategoryRelations = pgTable('dictionary_category_relations', {
+  dictionaryId: uuid('dictionary_id')
+    .references(() => dictionaries.id, { onDelete: 'cascade' }),
+  categoryCode: text('category_code').references(() => categories.code, { onDelete: 'cascade' }),
+}, t => [
+  primaryKey({ columns: [t.dictionaryId, t.categoryCode] }),
+]);
 
 export const words = pgTable('words', {
   id: uuid().defaultRandom().primaryKey(),

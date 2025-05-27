@@ -8,7 +8,7 @@
     "init": "tsx src/migrate.ts",
     "push": "drizzle-kit push",
     "studio": "drizzle-kit studio",
-    "migrate": "drizzle-kit push",
+    "migrate": "drizzle-kit migrate",
     "generate": "drizzle-kit generate"
   },
   "dependencies": {

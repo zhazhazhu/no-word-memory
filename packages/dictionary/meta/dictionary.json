@@ -1,0 +1,11 @@
+{
+  "dictionaries": [
+    {
+      "name": "新概念英语1",
+      "categoryCode": "POPULATION",
+      "coverIcon": "i-fluent-color-book-open-24",
+      "description": "收录新概念第一册学习词汇，适合英语入门学习者",
+      "wordsPath": "./word/new-concept-1.csv"
+    }
+  ]
+}

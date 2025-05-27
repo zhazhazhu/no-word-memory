@@ -1,3 +1,4 @@
+import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server';
 import type { CreateNuxtTrpcContext } from './contexts';
 import { initTRPC, TRPCError } from '@trpc/server';
 import { ZodError } from 'zod';
@@ -56,3 +57,7 @@ export const appRouter = router({
 // Export type router type signature,
 // NOT the router itself.
 export type AppRouter = typeof appRouter;
+
+export type RouterInput = inferRouterInputs<AppRouter>;
+
+export type RouterOutput = inferRouterOutputs<AppRouter>;
