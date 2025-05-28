@@ -68,7 +68,11 @@ const categoriesOfDictionary = protectedProcedure.query(async () => {
 const myDictionaries = protectedProcedure.query(async () => {
   const dictionary = await db.query.userDictionaries.findMany({
     with: {
-      words: true,
+      dictionary: {
+        with: {
+          words: true,
+        },
+      },
     },
   });
   return dictionary;

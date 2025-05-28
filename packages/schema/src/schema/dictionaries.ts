@@ -55,7 +55,9 @@ export type InsertDefinition = InferInsertModel<typeof definitions>;
 export const userDictionaries = pgTable('user_dictionaries', {
   id: uuid().defaultRandom().primaryKey(),
   userId: text().notNull(), // next-auth 的 user.id
-  dictionaryId: uuid().references(() => dictionaries.id),
+  dictionaryId: uuid()
+    .notNull()
+    .references(() => dictionaries.id, { onDelete: 'cascade' }),
   selectedAt: timestamp().defaultNow(),
 });
 

@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@iconify-json/fluent-color": "^1.2.12",
+    "@pinia/nuxt": "^0.11.0",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.15.19",
     "@types/pg": "^8.15.2",

@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@sidebase/nuxt-auth',
     '@vueuse/nuxt',
+    '@pinia/nuxt',
   ],
   css: ['~/assets/css/main.css'],
   app: {
@@ -25,7 +26,7 @@ export default defineNuxtConfig({
   },
   icon: {
     serverBundle: {
-      collections: ['fluent-color'], // <!--- this
+      collections: ['fluent:color'],
     },
   },
   devServer: {

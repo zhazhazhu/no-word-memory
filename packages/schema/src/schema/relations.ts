@@ -1,9 +1,10 @@
 import { relations } from 'drizzle-orm';
-import { categories, dictionaries, dictionaryCategoryRelations, words } from './dictionaries';
+import { categories, dictionaries, dictionaryCategoryRelations, userDictionaries, words } from './dictionaries';
 
 export const dictionaryRelations = relations(dictionaries, ({ many }) => ({
   words: many(words),
   categories: many(dictionaryCategoryRelations),
+  userDictionaries: many(userDictionaries),
 }));
 
 export const wordRelations = relations(words, ({ one }) => ({
@@ -25,5 +26,12 @@ export const dictionaryCategoryRelationRelations = relations(dictionaryCategoryR
   category: one(categories, {
     fields: [dictionaryCategoryRelations.categoryCode],
     references: [categories.code],
+  }),
+}));
+
+export const userDictionaryRelations = relations(userDictionaries, ({ one }) => ({
+  dictionary: one(dictionaries, {
+    fields: [userDictionaries.dictionaryId],
+    references: [dictionaries.id],
   }),
 }));

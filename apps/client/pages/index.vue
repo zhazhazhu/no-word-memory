@@ -1,30 +1,48 @@
 <script lang='ts' setup>
+const { data: session } = useAuth();
+const { wordCount } = userDictionaryStore();
 </script>
 
 <template>
-  <div class="h-full flex flex-col items-center justify-center space-y-4">
-    <div class="w-[300px] h-[100px] bg-lime-500/50 rounded-2xl flex flex-col relative cursor-pointer select-none">
-      <UIcon name="i-material-symbols-play-arrow-rounded" size="60" class="absolute top-3 left-2" />
-      <div class="flex-1 flex flex-col items-start justify-center translate-x-18">
-        <div class="text-2xl font-bold">
-          Learn
+  <div class="h-full flex flex-col items-center justify-center space-y-14 mx-auto mt-[30px]">
+    <div class="flex flex-col items-center space-y-4">
+      <!-- <UIcon name="i-solar-flag-2-bold-duotone" size="60" class="-rotate-30 text-primary" /> -->
+      <div class="font-bold text-5xl text-primary">
+        Welcome back
+      </div>
+      <div class="font-bold text-2xl">
+        Hello, {{ session?.user?.name || '' }}, This is your schedule today
+      </div>
+    </div>
+    <div class="flex items-center">
+      <div class="w-[200px] text-center">
+        <div class="font-bold text-[1.1rem] text-gray-500">
+          Learned
         </div>
-        <div class="text-[14px] font-bold">
-          2000
+        <div class="text-[1rem] space-x-2 text-gray-500">
+          <span class="font-bold text-5xl text-gray-700">0</span>
+          <span>/</span>
+          <span>{{ wordCount }}</span>
+        </div>
+      </div>
+      <div class="w-[200px] text-center">
+        <div class="font-bold text-[1.1rem] text-gray-500">
+          Reviewed
+        </div>
+        <div class="text-[1rem] space-x-2 text-gray-500">
+          <span class="font-bold text-5xl text-gray-700">0</span>
+          <span>/</span>
+          <span>0</span>
         </div>
       </div>
     </div>
-
-    <div class="w-[300px] h-[100px] bg-lime-500/50 rounded-2xl flex flex-col relative select-none">
-      <UIcon name="i-material-symbols-play-arrow-rounded" size="60" class="absolute top-3 left-2" />
-      <div class="flex-1 flex flex-col items-start justify-center translate-x-18">
-        <div class="text-2xl font-bold">
-          Review
-        </div>
-        <div class="text-[14px] font-bold">
-          532
-        </div>
-      </div>
+    <div class="flex w-[400px] h-[60px] space-x-4">
+      <UButton block class="text-2xl" leading-icon="i-mdi-play" :ui="{ leadingIcon: 'size-8' }">
+        Learn
+      </UButton>
+      <UButton variant="soft" block class="text-2xl" icon="i-mdi-play" :ui="{ leadingIcon: 'size-8' }">
+        Review
+      </UButton>
     </div>
   </div>
 </template>
