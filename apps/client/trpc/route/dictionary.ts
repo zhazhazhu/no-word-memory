@@ -4,7 +4,8 @@ import { protectedProcedure, router } from '../trpc';
 
 const dictionaries = protectedProcedure
   .input(z.object({ categoryCode: z.string(), keyWord: z.string().optional() }).optional())
-  .query(async ({ input }) => {
+  .query(async ({ input, ctx }) => {
+    const userId = ctx.session.id;
     const keyword = input?.keyWord?.trim();
     // 如果传了 categoryId，就筛选出这个分类下的词典
     if (input?.categoryCode) {
@@ -14,6 +15,9 @@ const dictionaries = protectedProcedure
           dictionary: {
             with: {
               words: true,
+              userDictionaries: {
+                where: (ud, { eq }) => eq(ud.userId, userId),
+              },
             },
           },
         },
@@ -29,11 +33,14 @@ const dictionaries = protectedProcedure
             )
         : relatedDictionaries.map(rel => rel.dictionary);
 
-      return filtered;
+      return filtered.map(dict => ({
+        ...dict,
+        isJoined: dict && dict.userDictionaries.length > 0 || false,
+      }));
     }
 
     // 没有传 categoryId，查全部
-    return await db.query.dictionaries.findMany({
+    const dictionaries = await db.query.dictionaries.findMany({
       where: keyword
         ? (dict, { ilike, or }) =>
             or(
@@ -46,8 +53,16 @@ const dictionaries = protectedProcedure
         categories: {
           with: { category: true },
         },
+        userDictionaries: {
+          where: (ud, { eq }) => eq(ud.userId, userId),
+        },
       },
     });
+
+    return dictionaries.map(dict => ({
+      ...dict,
+      isJoined: dict && dict.userDictionaries.length > 0 || false,
+    }));
   });
 
 export type Dictionary = Awaited<ReturnType<typeof dictionaries>>;

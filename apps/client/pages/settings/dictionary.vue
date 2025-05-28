@@ -13,7 +13,7 @@ const { data: dictionary } = await $trpc.dictionary.dictionaries.useQuery(comput
 const toast = useToast();
 
 function handleAddDictionary(item: RouterOutput['dictionary']['dictionaries'][0]) {
-  $trpc.dictionary.addDictionary.mutate(item!.id).catch((err) => {
+  $trpc.dictionary.addDictionary.mutate(item.id!).catch((err) => {
     toast.add({ title: 'Error', description: err.message });
   });
 }
@@ -31,17 +31,18 @@ function handleAddDictionary(item: RouterOutput['dictionary']['dictionaries'][0]
           <div class="flex-1">
             <div class="font-bold text-sm">
               {{ item?.name }}
+              <UBadge v-if="item?.isJoined" color="primary" label="Joined" class="ml-2" />
             </div>
-            <div class="text-xs text-gray-500">
+            <div class="text-xs text-gray-500 mt-[4px]">
               {{ item?.description }}
             </div>
           </div>
           <div class="text-xs text-gray-500">
-            Total: {{ item?.words.length }}
+            Total: {{ item?.words?.length }}
           </div>
         </div>
         <div>
-          <UButton color="primary" variant="outline" icon="i-mdi-plus" @click="handleAddDictionary(item)">
+          <UButton color="primary" variant="outline" icon="i-mdi-plus" :disabled="item.isJoined" @click="handleAddDictionary(item)">
             Add
           </UButton>
         </div>
