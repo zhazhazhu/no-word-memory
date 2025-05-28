@@ -3,18 +3,8 @@ import type { DropdownMenuItem, NavigationMenuItem } from '@nuxt/ui';
 
 const { data: session, signOut } = useAuth();
 
-// const colorMode = useColorMode();
+const colorMode = useColorMode();
 
-// const colorOptions: Record<string, { icon: string; value: string }> = {
-//   light: {
-//     icon: 'i-heroicons-sun-20-solid',
-//     value: 'light',
-//   },
-//   dark: {
-//     icon: 'i-heroicons-moon-20-solid',
-//     value: 'dark',
-//   },
-// };
 const menuItems = ref<NavigationMenuItem[][]>([
   [
     {
@@ -49,6 +39,9 @@ const menuItems = ref<NavigationMenuItem[][]>([
     {
       label: 'Theme',
       icon: 'i-heroicons-sun-20-solid',
+      onClick: () => {
+        colorMode.preference = colorMode.preference === 'light' ? 'dark' : 'light';
+      },
     },
   ],
 ]);

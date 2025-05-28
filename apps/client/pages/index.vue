@@ -4,7 +4,7 @@ const { wordCount } = userDictionaryStore();
 </script>
 
 <template>
-  <div class="h-full flex flex-col items-center justify-center space-y-14 mx-auto mt-[30px]">
+  <div class="h-[calc(100vh-100px)] flex flex-col items-center justify-center space-y-14">
     <div class="flex flex-col items-center space-y-4">
       <!-- <UIcon name="i-solar-flag-2-bold-duotone" size="60" class="-rotate-30 text-primary" /> -->
       <div class="font-bold text-5xl text-primary">
@@ -16,28 +16,28 @@ const { wordCount } = userDictionaryStore();
     </div>
     <div class="flex items-center">
       <div class="w-[200px] text-center">
-        <div class="font-bold text-[1.1rem] text-gray-500">
+        <div class="font-bold text-[1.1rem] text-neutral-500">
           Learned
         </div>
-        <div class="text-[1rem] space-x-2 text-gray-500">
-          <span class="font-bold text-5xl text-gray-700">0</span>
+        <div class="text-[1rem] space-x-2 text-neutral-500">
+          <span class="font-bold text-5xl text-default">0</span>
           <span>/</span>
           <span>{{ wordCount }}</span>
         </div>
       </div>
       <div class="w-[200px] text-center">
-        <div class="font-bold text-[1.1rem] text-gray-500">
+        <div class="font-bold text-[1.1rem] text-neutral-500">
           Reviewed
         </div>
-        <div class="text-[1rem] space-x-2 text-gray-500">
-          <span class="font-bold text-5xl text-gray-700">0</span>
+        <div class="text-[1rem] space-x-2 text-neutral-500">
+          <span class="font-bold text-5xl text-default">0</span>
           <span>/</span>
           <span>0</span>
         </div>
       </div>
     </div>
     <div class="flex w-[400px] h-[60px] space-x-4">
-      <UButton block class="text-2xl" leading-icon="i-mdi-play" :ui="{ leadingIcon: 'size-8' }">
+      <UButton block class="text-2xl" leading-icon="i-mdi-play" :ui="{ leadingIcon: 'size-8' }" @click="navigateTo('/learning')">
         Learn
       </UButton>
       <UButton variant="soft" block class="text-2xl" icon="i-mdi-play" :ui="{ leadingIcon: 'size-8' }">
