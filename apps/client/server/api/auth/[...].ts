@@ -1,16 +1,20 @@
+import path from 'node:path';
 import process from 'node:process';
 import { NuxtAuthHandler } from '#auth';
 import PostgresAdapter from '@auth/pg-adapter';
+import dotenv from 'dotenv';
 import EmailProvider from 'next-auth/providers/email';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import { Pool } from 'pg';
 
+dotenv.config({ path: path.resolve(process.cwd(), '../../.env') });
+
 const adapter = PostgresAdapter(new Pool({
-  host: process.env.DATABASE_HOST,
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_NAME,
+  host: process.env.NUXT_DATABASE_HOST,
+  user: process.env.NUXT_DATABASE_USER,
+  password: process.env.NUXT_DATABASE_PASSWORD,
+  database: process.env.NUXT_DATABASE_NAME,
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 20000,

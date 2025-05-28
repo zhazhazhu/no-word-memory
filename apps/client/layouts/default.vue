@@ -68,7 +68,7 @@ const dropdownItems = ref<DropdownMenuItem[][]>([
       <UContainer class="h-full">
         <div class="flex items-center justify-between h-full">
           <div class="mr-[20px] text-xl font-bold cursor-pointer flex items-end" @click="navigateTo('/')">
-            <UIcon name="i-fluent-color-notebook-20" size="32" />
+            <UIcon name="fluent-color:notebook-20" size="32" />
             <span>NoWords</span>
           </div>
 

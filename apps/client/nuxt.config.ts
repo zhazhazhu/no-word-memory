@@ -24,11 +24,6 @@ export default defineNuxtConfig({
   ui: {
     fonts: false,
   },
-  icon: {
-    serverBundle: {
-      collections: ['fluent:color'],
-    },
-  },
   devServer: {
     port: 3300,
   },

@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1747962848661,
-      "tag": "0000_hard_omega_sentinel",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1747964496020,
-      "tag": "0001_striped_annihilus",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1747989297433,
-      "tag": "0002_next_groot",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1747991713071,
-      "tag": "0003_modern_scarlet_witch",
+      "when": 1748452070432,
+      "tag": "0000_bouncy_blade",
       "breakpoints": true
     }
   ]

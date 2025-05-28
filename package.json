@@ -10,9 +10,14 @@
   "main": "index.js",
   "scripts": {
     "dev:client": "pnpm --filter @no-word-memory/client dev",
-    "build": "pnpm --filter @no-word-memory/client build",
-    "generate": "pnpm --filter @no-word-memory/client generate",
-    "preview": "pnpm --filter @no-word-memory/client preview",
+    "build:client": "pnpm --filter @no-word-memory/client build",
+    "generate:client": "pnpm --filter @no-word-memory/client generate",
+    "preview:client": "pnpm --filter @no-word-memory/client preview",
+    "push:db": "pnpm --filter @no-word-memory/database push",
+    "studio:db": "pnpm --filter @no-word-memory/database studio",
+    "migrate:db": "pnpm --filter @no-word-memory/database migrate",
+    "generate:db": "pnpm --filter @no-word-memory/database generate",
+    "send:db": "pnpm --filter @no-word-memory/database send",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

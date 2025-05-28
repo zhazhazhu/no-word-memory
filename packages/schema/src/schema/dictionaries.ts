@@ -21,9 +21,9 @@ export const categories = pgTable('dictionary_categories', {
 });
 
 export const dictionaryCategoryRelations = pgTable('dictionary_category_relations', {
-  dictionaryId: uuid('dictionary_id')
+  dictionaryId: uuid()
     .references(() => dictionaries.id, { onDelete: 'cascade' }),
-  categoryCode: text('category_code').references(() => categories.code, { onDelete: 'cascade' }),
+  categoryCode: text().references(() => categories.code, { onDelete: 'cascade' }),
 }, t => [
   primaryKey({ columns: [t.dictionaryId, t.categoryCode] }),
 ]);

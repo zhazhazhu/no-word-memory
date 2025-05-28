@@ -9,9 +9,11 @@
     "push": "drizzle-kit push",
     "studio": "drizzle-kit studio",
     "migrate": "drizzle-kit migrate",
-    "generate": "drizzle-kit generate"
+    "generate": "drizzle-kit generate",
+    "send": "tsx src/send.ts"
   },
   "dependencies": {
+    "csv-parse": "^5.6.0",
     "drizzle-orm": "^0.43.1",
     "pg": "^8.16.0",
     "postgres": "^3.4.7"

@@ -4,9 +4,11 @@ import path from 'node:path';
 import process from 'node:process';
 import { db, schemas } from '@no-word-memory/database';
 import { parse as csvParse } from 'csv-parse/sync';
+import dotenv from 'dotenv';
 import category from '../meta/category.json';
 import dictionary from '../meta/dictionary.json';
-import 'dotenv/config';
+
+dotenv.config({ path: path.resolve(process.cwd(), '../../.env') });
 
 export async function send() {
   db.delete(schemas.dictionaries);

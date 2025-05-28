@@ -1,9 +1,9 @@
 import path from 'node:path';
 import process from 'node:process';
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
 import { defineConfig } from 'drizzle-kit';
 
-dotenv.config({ path: path.resolve(__dirname, '../../apps/api/.env') });
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 console.log('process.env.DATABASE_URL: ', process.env.DATABASE_URL);
 

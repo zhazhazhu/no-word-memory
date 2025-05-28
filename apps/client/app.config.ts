@@ -8,4 +8,8 @@ export default defineAppConfig({
       loading: 'i-lucide-loader-circle',
     },
   },
+  icon: {
+    mode: 'css',
+    cssLayer: 'base',
+  },
 });
