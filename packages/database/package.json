@@ -5,7 +5,6 @@
   "packageManager": "pnpm@10.11.0",
   "main": "src/index.ts",
   "scripts": {
-    "init": "tsx src/migrate.ts",
     "push": "drizzle-kit push",
     "studio": "drizzle-kit studio",
     "migrate": "drizzle-kit migrate",
