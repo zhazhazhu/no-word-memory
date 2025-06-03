@@ -1,11 +1,23 @@
 import type { CreateNuxtTrpcContext } from './contexts';
 import { initTRPC, TRPCError } from '@trpc/server';
+import { ZodError } from 'zod';
 
 /**
  * Initialization of tRPC backend
  * Should be done only once per backend!
  */
-const t = initTRPC.context<CreateNuxtTrpcContext>().create();
+export const t = initTRPC.context<CreateNuxtTrpcContext>().create({
+  errorFormatter({ shape, error }) {
+    return {
+      ...shape,
+      data: {
+        ...shape.data,
+        zodError:
+          error.cause instanceof ZodError ? error.cause.flatten() : null,
+      },
+    };
+  },
+});
 
 /**
  * Export reusable router and procedure helpers
@@ -19,6 +31,10 @@ export const router = t.router;
  */
 export const publicProcedure = t.procedure;
 
+/**
+ * Export reusable middleware
+ * that can be used throughout the router
+ */
 export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
   if (!ctx.session?.user) {
     throw new TRPCError({ code: 'UNAUTHORIZED' });

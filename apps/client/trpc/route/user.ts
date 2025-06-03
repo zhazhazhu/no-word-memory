@@ -1,7 +1,7 @@
 import { db, schemas } from '@no-word-memory/database';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
-import { protectedProcedure, router } from '../trpc';
+import { protectedProcedure } from '../trpc';
 
 const list = protectedProcedure.query(async () => {
   // Retrieve users from a datasource, this is an imaginary database
@@ -28,10 +28,4 @@ const updateProfile = protectedProcedure.input(z.object({
   return user;
 });
 
-const user = router({
-  list,
-  existByEmail,
-  updateProfile,
-});
-
-export { user };
+export { existByEmail, list, updateProfile };

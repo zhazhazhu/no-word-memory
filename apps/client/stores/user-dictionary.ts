@@ -15,7 +15,7 @@ export const userDictionaryStore = defineStore('user-dictionary', {
       return state.userDictionary?.[0];
     },
     wordCount(): number {
-      const count = this.currentDictionary?.dictionary.words.length || 0;
+      const count = this.currentDictionary?.dictionary?.words.length || 0;
       return count;
     },
   },

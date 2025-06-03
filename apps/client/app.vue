@@ -1,7 +1,7 @@
 <script lang='ts' setup>
 const userDictionary = userDictionaryStore();
 
-await callOnce(userDictionary.fetch);
+await userDictionary.fetch();
 </script>
 
 <template>

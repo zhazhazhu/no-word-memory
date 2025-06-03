@@ -11,6 +11,7 @@ export const dictionaries = pgTable('dictionaries', {
 });
 
 export type InsertDictionary = InferInsertModel<typeof dictionaries>;
+
 export type Dictionary = InferSelectModel<typeof dictionaries>;
 
 export const categories = pgTable('dictionary_categories', {
@@ -44,7 +45,7 @@ export const definitions = pgTable('definitions', {
   id: uuid().defaultRandom().primaryKey(),
   wordId: uuid()
     .notNull()
-    .references(() => words.id, { onDelete: 'cascade' }),
+    .references(() => words.id),
   partOfSpeech: text(), // 例如：noun / verb
   meaning: text(),
   example: text(),

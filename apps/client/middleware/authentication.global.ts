@@ -10,7 +10,6 @@ export default defineNuxtRouteMiddleware((to) => {
     }
     return;
   }
-
   /**
    * We cannot directly call and/or return `signIn` here as `signIn` uses async composables under the hood, leading to "nuxt instance undefined errors", see https://github.com/nuxt/framework/issues/5740#issuecomment-1229197529
    *

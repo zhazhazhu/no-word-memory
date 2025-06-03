@@ -1,5 +1,5 @@
 import { relations } from 'drizzle-orm';
-import { categories, dictionaries, dictionaryCategoryRelations, userDictionaries, words } from './dictionaries';
+import { categories, definitions, dictionaries, dictionaryCategoryRelations, userDictionaries, words } from './dictionaries';
 
 export const dictionaryRelations = relations(dictionaries, ({ many }) => ({
   words: many(words),
@@ -7,11 +7,12 @@ export const dictionaryRelations = relations(dictionaries, ({ many }) => ({
   userDictionaries: many(userDictionaries),
 }));
 
-export const wordRelations = relations(words, ({ one }) => ({
+export const wordRelations = relations(words, ({ one, many }) => ({
   dictionary: one(dictionaries, {
     fields: [words.dictionaryId],
     references: [dictionaries.id],
   }),
+  definitions: many(definitions),
 }));
 
 export const categoryRelations = relations(categories, ({ many }) => ({
@@ -33,5 +34,12 @@ export const userDictionaryRelations = relations(userDictionaries, ({ one }) => 
   dictionary: one(dictionaries, {
     fields: [userDictionaries.dictionaryId],
     references: [dictionaries.id],
+  }),
+}));
+
+export const definitionsRelations = relations(definitions, ({ one }) => ({
+  word: one(words, {
+    fields: [definitions.wordId],
+    references: [words.id],
   }),
 }));

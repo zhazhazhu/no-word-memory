@@ -10,6 +10,10 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   app: {
     head: {
+      title: 'NoWords | A memory game',
+      htmlAttrs: {
+        lang: 'en',
+      },
       meta: [
         {
           name: 'viewport',

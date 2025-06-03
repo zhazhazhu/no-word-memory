@@ -1,4 +1,4 @@
-import type { InsertWord } from '@no-word-memory/schema';
+import type { Word } from './types/meta';
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
@@ -37,12 +37,34 @@ export async function send() {
       console.log(wordsPath);
 
       const wordsCsv = await fs.readFileSync(wordsPath, 'utf-8');
-      const words: InsertWord[] = await csvParse(wordsCsv, { columns: true });
+      const words: Word[] = await csvParse(wordsCsv, { columns: true });
 
-      await db.insert(schemas.words).values(words.map(word => ({
-        ...word,
-        dictionaryId: dictionary.id,
-      })));
+      for (const row of words) {
+        const existingWord = await db.query.words.findFirst({
+          where: (w, { eq, and }) =>
+            and(eq(w.word, row.word), eq(w.dictionaryId, dictionary.id)),
+        });
+
+        let wordId: string;
+        if (existingWord) {
+          wordId = existingWord.id;
+        }
+        else {
+          const [newWord] = await db.insert(schemas.words).values({
+            word: row.word,
+            pronunciation: row.pronunciation,
+            dictionaryId: dictionary.id,
+          }).returning();
+          wordId = newWord.id;
+        }
+
+        await db.insert(schemas.definitions).values({
+          wordId,
+          partOfSpeech: row.part_of_speech,
+          meaning: row.meaning,
+          example: row.example,
+        });
+      }
     }
     console.log('Create words successfully!');
   }
