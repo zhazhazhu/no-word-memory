@@ -1,6 +1,9 @@
 <script lang='ts' setup>
+const { $trpc } = useNuxtApp();
 const { data: session } = useAuth();
 const { wordCount } = userDictionaryStore();
+
+safeCall(() => $trpc.learning_records.today.query());
 </script>
 
 <template>

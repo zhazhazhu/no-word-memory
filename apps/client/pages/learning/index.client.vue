@@ -1,4 +1,5 @@
 <script lang='ts' setup>
+const { $trpc } = useNuxtApp();
 const { currentDictionary } = userDictionaryStore();
 
 const words = computed(() => currentDictionary?.dictionary.words || []);
@@ -10,7 +11,11 @@ watchEffect(() => {
   speak(currentLearningWord.value.word);
 });
 
-function nextWord() {
+function nextWord(remembered: boolean) {
+  $trpc.learning_records.review.mutate({
+    wordId: currentLearningWord.value.id,
+    remembered,
+  });
   currentLearningWordIndex.value++;
   if (currentLearningWordGroup.value.length === currentLearningWordIndex.value) {
     currentLearningWordIndex.value = 0;
@@ -19,16 +24,13 @@ function nextWord() {
 
 const cleanup = useEventListener(document, 'keydown', (e) => {
   if (e.key === ' ') {
-    nextWord();
+    nextWord(true);
   }
   else if (e.key === 'q') {
-    nextWord();
-  }
-  else if (e.key === 'w') {
-    nextWord();
+    nextWord(true);
   }
   else if (e.key === 'e') {
-    nextWord();
+    nextWord(false);
   }
 });
 
@@ -62,20 +64,14 @@ onBeforeUnmount(() => {
       <div>{{ item.meaning }}</div>
     </div>
 
-    <div class="flex w-[540px] h-[60px] space-x-4 mt-[40px]">
-      <UButton variant="soft" color="neutral" block class="text-xl" :ui="{ leadingIcon: 'size-8' }" @click="nextWord">
-        Know
+    <div class="flex w-[400px] h-[60px] space-x-4 mt-[40px]">
+      <UButton variant="soft" color="neutral" block class="text-xl" :ui="{ leadingIcon: 'size-8' }" @click="nextWord(true)">
+        Mastered
         <UKbd size="sm">
           Q
         </UKbd>
       </UButton>
-      <UButton variant="soft" color="neutral" block class="text-xl" :ui="{ leadingIcon: 'size-8' }" @click="nextWord">
-        Similar
-        <UKbd size="sm">
-          W
-        </UKbd>
-      </UButton>
-      <UButton variant="soft" color="neutral" block class="text-xl" :ui="{ leadingIcon: 'size-8' }" @click="nextWord">
+      <UButton variant="soft" color="neutral" block class="text-xl" :ui="{ leadingIcon: 'size-8' }" @click="nextWord(false)">
         Forget
         <UKbd size="sm">
           E

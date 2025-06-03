@@ -1,6 +1,6 @@
 import { db, schemas } from '@no-word-memory/database';
 import { z } from 'zod';
-import { protectedProcedure } from '../trpc';
+import { protectedProcedure, router } from '../trpc';
 
 const dictionaries = protectedProcedure
   .input(z.object({ categoryCode: z.string(), keyWord: z.string().optional() }).optional())
@@ -109,4 +109,11 @@ const addDictionary = protectedProcedure.input(z.string()).mutation(async ({ ctx
   return dictionary;
 });
 
-export { addDictionary, categoriesOfDictionary, dictionaries, myDictionaries };
+const dictionary = router({
+  dictionaries,
+  myDictionaries,
+  addDictionary,
+  categoriesOfDictionary,
+});
+
+export { dictionary };
