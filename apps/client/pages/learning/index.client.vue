@@ -57,6 +57,11 @@ onBeforeUnmount(() => {
       </UButton>
     </div>
 
+    <div v-for="item in currentLearningWord.definitions" :key="item.id" class="my-[10px] flex text-[1rem] space-x-2 text-neutral-500 font-bold italic">
+      <div>{{ item.partOfSpeech }}</div>
+      <div>{{ item.meaning }}</div>
+    </div>
+
     <div class="flex w-[540px] h-[60px] space-x-4 mt-[40px]">
       <UButton variant="soft" color="neutral" block class="text-xl" :ui="{ leadingIcon: 'size-8' }" @click="nextWord">
         Know
