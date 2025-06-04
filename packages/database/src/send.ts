@@ -10,10 +10,10 @@ import dictionary from '../meta/dictionary.json';
 
 dotenv.config({ path: path.resolve(process.cwd(), '../../.env') });
 
-export async function send() {
-  db.delete(schemas.dictionaries);
-  db.delete(schemas.categories);
-  db.delete(schemas.words);
+async function main() {
+  for (const key in schemas) {
+    db.delete(schemas[key]);
+  }
 
   await db.insert(schemas.categories).values(category.categories).returning();
   console.log('Create categories successfully!');
@@ -73,4 +73,4 @@ export async function send() {
   process.exit(0);
 }
 
-send();
+main();
