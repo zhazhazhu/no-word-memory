@@ -1,4 +1,4 @@
-import type { Word } from './types/meta';
+import type { ECdictWord, Word } from './types/meta';
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
@@ -10,14 +10,46 @@ import dictionary from '../meta/dictionary.json';
 
 dotenv.config({ path: path.resolve(process.cwd(), '../../.env') });
 
-async function main() {
-  for (const key in schemas) {
-    db.delete(schemas[key]);
-  }
+async function sendECdictWord() {
+  const metaRootPath = path.resolve(process.cwd(), './meta');
+  const ecdictPath = path.resolve(metaRootPath, './word/ecdict.csv');
+  console.log(ecdictPath);
 
+  const ecdictCsv = await fs.readFileSync(ecdictPath, 'utf-8');
+  const words: ECdictWord[] = await csvParse(ecdictCsv, { columns: true });
+  for (const row of words) {
+    const existingWord = await db.query.words.findFirst({
+      where: (w, { eq }) => eq(w.word, row.word),
+    });
+
+    let wordId: string;
+    if (existingWord) {
+      wordId = existingWord.id;
+    }
+    else {
+      const [newWord] = await db.insert(schemas.words).values({
+        word: row.word,
+        pronunciation: row.phonetic,
+      }).returning();
+      wordId = newWord.id;
+    }
+
+    await db.insert(schemas.definitions).values({
+      wordId,
+      partOfSpeech: row.phonetic,
+      meaning: row.translation,
+      example: '',
+    });
+  }
+}
+
+async function main() {
   await db.insert(schemas.categories).values(category.categories).returning();
   console.log('Create categories successfully!');
   const metaRootPath = path.resolve(process.cwd(), './meta');
+
+  await sendECdictWord();
+  console.log('Create words successfully!');
 
   for (const element of dictionary.dictionaries) {
     const [dictionary] = await db.insert(schemas.dictionaries).values({
@@ -66,7 +98,6 @@ async function main() {
         });
       }
     }
-    console.log('Create words successfully!');
   }
 
   console.log('Send data successfully!');
